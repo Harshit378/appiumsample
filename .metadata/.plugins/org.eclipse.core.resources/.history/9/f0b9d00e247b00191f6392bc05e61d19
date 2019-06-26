@@ -1,0 +1,23 @@
+package accessmodifier;
+
+public class MultipleMain {
+	
+	 public static void main(String[] args)
+	    {
+	        System.out.println("Execution starts from this method");
+	        main(0);
+	    }
+	 
+	    void main(int args)
+	    {
+	        System.out.println("Another main method");
+	    }
+	 
+	    double main(int i, double d)
+	    {
+	        System.out.println("Another main method");
+	 
+	        return d;
+	    }
+
+}

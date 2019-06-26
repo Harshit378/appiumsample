@@ -1,0 +1,19 @@
+package enum_practice;
+
+public class Test_Enum {
+
+	Days day;
+	
+	public Test_Enum(Days day) {
+		this.day = day;
+	}
+	
+	
+	public static void main(String[] args) {
+		static int num = 8;
+		String workDay = "MONDAY";
+		System.out.println(Days.valueOf(workDay));		
+	
+	}
+	
+}

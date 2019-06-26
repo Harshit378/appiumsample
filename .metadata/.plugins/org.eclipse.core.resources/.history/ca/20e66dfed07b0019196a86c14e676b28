@@ -1,0 +1,16 @@
+package strings;
+
+public class StringMethods {
+
+	public static void main(String[] args) {
+	
+		String name = "Tondeleya Dela Vintimiglia";
+		System.out.println("Substring(0,0) " + name.substring(0,1));
+		System.out.println("Substring(0,1) " + name.substring(0,2));
+		System.out.println("Substring(0,2) " + name.substring(0,3));
+		System.out.println("Substring(0,3) " + name.substring(0,4));
+		System.out.println("Substring(0,4) " + name.substring(0,5));
+		
+	}
+
+}

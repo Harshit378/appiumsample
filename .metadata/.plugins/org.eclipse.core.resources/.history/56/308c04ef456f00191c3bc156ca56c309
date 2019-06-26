@@ -1,0 +1,9 @@
+package enum_practice;
+
+public class Test_Enum {
+
+	public static void main(String[] args) {
+		
+	}
+	
+}

@@ -1,0 +1,35 @@
+package enum_practice;
+
+public class Test_Enum {
+
+	Days day;
+	
+	public Test_Enum(Days day) {
+		this.day = day;
+	}
+	
+	
+	public static void main(String[] args) {
+		String workDay = "MONDAY";
+		System.out.println(Days.valueOf(workDay));		
+	
+	}
+	
+	@SuppressWarnings("finally")
+	public static void main1(String[] args)
+    {
+        try
+        {
+            return;
+        }
+        catch (Exception e)
+        {
+            return;
+        }
+        finally
+        {
+            return;
+        }
+    }
+	
+}

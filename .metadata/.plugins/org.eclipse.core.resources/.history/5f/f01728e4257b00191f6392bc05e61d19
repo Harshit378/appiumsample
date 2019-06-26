@@ -1,0 +1,38 @@
+package codingbat;
+
+public class ParrotTrouble {
+
+	public static void main(String[] args) {
+
+		parrotTrouble(true, 6);
+		parrotTrouble(true, 7);
+		parrotTrouble(false, 6);
+		parrotTrouble(true, 21);
+		parrotTrouble(false, 21);
+		parrotTrouble(false, 20);
+		parrotTrouble(true, 23);
+		parrotTrouble(false, 23);
+		parrotTrouble(true, 20);
+		parrotTrouble(false, 12);
+
+	}
+
+	public static void parrotTrouble(boolean talking, int hour) {
+		boolean result;
+		if (talking == true && isParrotTalking(hour)) {
+			result = true;
+		} else
+			result = false;
+		System.out.println(result);
+	}
+
+	public static boolean isParrotTalking(int hour) {
+
+		if (hour < 7 || hour > 20) {
+			return true;
+		} else
+			return false;
+
+	}
+
+}

@@ -1,0 +1,17 @@
+package inheritance;
+
+public class TestDog {
+
+	public static void main(String args[]) {
+		Animals a = new Animals(); // Animal reference and object
+		Animals b = new Dog(); // Animal reference but Dog object
+
+		Dog d = new Animals();
+		
+		a.move(); // runs the method in Animal class
+		b.move(); // runs the method in Dog class
+		d.bark();
+		d.eat();
+	}
+
+}

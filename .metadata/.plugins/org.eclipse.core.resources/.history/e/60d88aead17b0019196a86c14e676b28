@@ -1,0 +1,26 @@
+package strings;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class StringMethods {
+
+	public static void main(String[] args) {
+	
+		String name = "Tondeleya Dela Vintimiglia";
+		System.out.println("Substring(0,1) " + name.substring(0,1));
+		System.out.println("Substring(0,2) " + name.substring(0,2));
+		System.out.println("Substring(0,3) " + name.substring(0,3));
+		System.out.println("Substring(0,4) " + name.substring(0,4));
+		System.out.println("Substring(0,5) " + name.substring(0,5));
+		
+		List<String> names = Arrays.asList("Jon", "Snow", "Hector", "Grim", "Jonathan", "Coachman");
+		String allNames = String.join("-", names);
+		System.out.println(allNames);
+		
+		String a = new String("abc");
+		String b = "abc";
+		
+	}
+
+}

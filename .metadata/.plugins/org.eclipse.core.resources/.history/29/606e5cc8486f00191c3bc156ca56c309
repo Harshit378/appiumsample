@@ -1,0 +1,36 @@
+package enum_practice;
+
+public class Test_Enum {
+
+	Days day;
+	
+	public Test_Enum(Days day) {
+		this.day = day;
+	}
+	
+	
+	public static void main(String[] args) {
+		String workDay = "MONDAY";
+		System.out.println(Days.valueOf(workDay));		
+	
+	}
+	
+	public static void main(String[] args)
+    {
+        try
+        {
+            return;
+        }
+        catch (Exception e)
+        {
+            return;
+        }
+        finally
+        {
+            return;
+        }
+ 
+        System.out.println("Unreachable code");    //Compile Time Error : Unreachable Code
+    }
+	
+}

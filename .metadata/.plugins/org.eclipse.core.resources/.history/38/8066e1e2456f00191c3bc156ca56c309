@@ -1,0 +1,11 @@
+package enum_practice;
+
+public enum Days {
+
+	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+	
+}
+
+ public class Test_Enum {
+	 
+ }

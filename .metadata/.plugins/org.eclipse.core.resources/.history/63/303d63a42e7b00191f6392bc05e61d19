@@ -1,0 +1,62 @@
+package database;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import utilities.PropertyReader;
+/**
+ * Practice class for DB Connection
+ * @author harsh
+ *
+ */
+public class Postgres_Connection {
+
+	private String name = "Hello";
+	static Connection conn;
+	static String connectionUrl;
+	static String dbUser;
+	static String dbPassword;
+
+	public static void main(String[] args) throws IOException, SQLException {
+		connectionUrl = PropertyReader.getInstance().getPropertyValue("postgres.url");
+		dbUser = PropertyReader.getInstance().getPropertyValue("postgres.user");
+		dbPassword = PropertyReader.getInstance().getPropertyValue("postgres.password");
+		System.out.println("Database connection status: " + connectToDB());
+
+		String query = "select * from gdp_owner.doc_upld limit 20";
+		executeSqlQuerry(query);
+	}
+
+	private static void executeSqlQuerry(String query) throws SQLException {
+		List<Map<String, String>> dbResult = new ArrayList<>();
+		Statement queryStatement = conn.createStatement();
+		ResultSet rs = queryStatement.executeQuery(query);
+		System.out.println(rs.toString());
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columnCount = rsmd.getColumnCount();
+		while (rs.next()) {
+			Map<String, String> rows = new TreeMap<String, String>();
+			for (int row = 1; row <= columnCount; ++row) {
+				rows.put(rsmd.getColumnLabel(row), rs.getString(row));
+			}
+			dbResult.add(rows);
+		}
+		dbResult.stream().forEachOrdered(System.out::println);
+		conn.close();
+	}
+
+	private static String connectToDB() throws SQLException {
+		conn = DriverManager.getConnection(connectionUrl, dbUser, dbPassword);
+		return conn.getSchema();
+	}
+
+}

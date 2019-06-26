@@ -1,0 +1,77 @@
+package com.testthon.sample;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Appium {
+
+	WebDriver driver;
+
+	@BeforeClass
+	public void setUp() throws Exception {
+
+//location of the app
+		File app = new File("F:\\Projects\\AppiumProject\\Flipkart_V6.15.apk");
+
+		// To create an object of Desired Capabilities
+		DesiredCapabilities capability = new DesiredCapabilities();
+//OS Name
+		capability.setCapability("device", "Android");
+		capability.setCapability(CapabilityType.BROWSER_NAME, "");
+//Mobile OS version. In My case its running on Android 4.2
+		capability.setCapability(CapabilityType.VERSION, "9");
+		capability.setCapability("app", app.getAbsolutePath());
+//To Setup the device name
+		capability.setCapability("deviceName", "POCO F1");
+		capability.setCapability("platformName", "Android");
+//set the package name of the app
+		capability.setCapability("app-package", "com.flipkart.android");
+		// set the Launcher activity name of the app
+		capability.setCapability("app-activity", "com.flipkart.android.activity.HomeFragmentHolderActivity");
+//driver object with new Url and Capabilities
+		driver = new RemoteWebDriver(new URL("http://0.0.0.0:4723/wd/hub"), capability);
+		
+		
+	}
+
+	@Test
+	public void testApp() throws MalformedURLException, InterruptedException {
+
+		Thread.sleep(8000);
+		
+		System.out.println("App launched");
+		// locate Add Contact button and click it
+
+		WebElement addContactButton = driver.findElement(By.xpath("//*[@text='Mobile No.']"));
+		
+		Thread.sleep(3000);
+		
+		addContactButton.click();
+		
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//*[@text='NONE OF THE ABOVE']")).click();
+		
+		Thread.sleep(3000);
+		
+		driver.navigate().back();
+
+		driver.findElement(By.xpath("//*[@class='android.widget.EditText']")).sendKeys("9652715670");
+		
+		Thread.sleep(3000);
+
+		driver.findElement(By.xpath("//*[@text='SIGN UP']")).click();
+		
+		Thread.sleep(3000);
+	}
+}

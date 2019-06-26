@@ -1,0 +1,20 @@
+package enum_practice;
+
+import javax.sound.midi.Soundbank;
+
+public class Test_Enum {
+
+	Days day;
+	
+	public Test_Enum(Days day) {
+		this.day = day;
+	}
+	
+	
+	public static void main(String[] args) {
+		String workDay = "MONDAY";
+		System.out.println(Days.valueOf(workDay));		
+	
+	}
+	
+}

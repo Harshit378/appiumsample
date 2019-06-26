@@ -1,0 +1,118 @@
+===================================================
+
+1. New path for Android Studio
+
+The New Android Studio 1.3 has its ADB location at:
+
+C:\Users\USERNAME\AppData\Local\Android\sdk\platform-tools.
+Now add this location to the end of PATH of environment variables. Eg:
+
+;C:\Users\USERNAME\AppData\Local\Android\sdk\platform-tools
+
+
+
+
+===================================================================================================
+
+2. How to find app package name and app activity name
+- type adb shell
+- Open the app on the phone
+- dumpsys window windows | grep -E 'mCurrentFocus'
+
+com.android.chrome
+com.google.android.apps.chrome.Main
+
+
+===================================================================================================
+
+3. You need the android.permission.INSTALL GRANT_RUNTIME_PERMISSIONS permission to use the PackageManager
+
+For this error go to Developer Options and enable below RISKY setting:-
+- USB Debugging Security Settings
+- Turn OFF MIUI Optimization
+
+=====================================================================================================
+
+4. For UIAutomatorViewer
+
+ - Add tools location toh Path variable
+ - Add swt.jar location (C:\Users\harsh\AppData\Local\Android\Sdk\tools\lib\x86) as ANDORID_SWT to Path variable
+
+===============================================================================================================
+
+5. Use Appium Inspector
+
+ - Run appium inspector
+ - Add platformName, deviceName and app
+ - capture ids. CSS IS NOT SUPPORTED
+
+
+===================================================================================================================
+6. How to install the external app to the android emulator
+ -Paste the .apk file to platform-tools in the android-sdk Linux folder.
+ -Open Terminal and navigate to platform-tools folder in android-sdk.
+ -Then Execute this command – ./adb install demo.apk.
+ -If the installation is successful then you will get your app in the launcher of your android emulator.
+
+===================================================================================================================
+
+package appiumtest;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class Appium {
+
+	WebDriver driver;
+
+	@BeforeClass
+	public void setUp() throws Exception {
+
+//location of the app
+		File app = new File("F:\\Projects\\AppiumProject\\Flipkart_V6.15.apk");
+
+		// To create an object of Desired Capabilities
+		DesiredCapabilities capability = new DesiredCapabilities();
+//OS Name
+		capability.setCapability("device", "Android");
+		capability.setCapability(CapabilityType.BROWSER_NAME, "");
+//Mobile OS version. In My case its running on Android 4.2
+		capability.setCapability(CapabilityType.VERSION, "9");
+		capability.setCapability("app", app.getAbsolutePath());
+//To Setup the device name
+		capability.setCapability("deviceName", "POCO F1");
+		capability.setCapability("platformName", "Android");
+//set the package name of the app
+		capability.setCapability("app-package", "com.flipkart.android");
+		// set the Launcher activity name of the app
+		capability.setCapability("app-activity", "com.flipkart.android.activity.HomeFragmentHolderActivity");
+//driver object with new Url and Capabilities
+		driver = new RemoteWebDriver(new URL("http://0.0.0.0:4723/wd/hub"), capability);
+	}
+
+	@Test
+	public void testApp() throws MalformedURLException {
+
+		System.out.println("App launched");
+		// locate Add Contact button and click it
+
+		WebElement addContactButton = driver.findElement(By.id("com.flipkart.android:id/mobileNo"));
+		addContactButton.click();
+
+		driver.findElement(By.id("com.google.android.gms:id/cancel")).click();
+
+		addContactButton.sendKeys("9652715670");
+
+		driver.findElement(By.id("com.flipkart.android:id/btn_msignup")).click();
+	}
+}

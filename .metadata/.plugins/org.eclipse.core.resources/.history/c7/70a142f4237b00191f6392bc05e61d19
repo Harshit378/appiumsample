@@ -1,0 +1,8 @@
+package accessmodifier;
+
+public class Protected {
+	
+	protected String name = "Gwen Stacy";
+	int marks = 380;
+	public double total = 592.5;
+}
